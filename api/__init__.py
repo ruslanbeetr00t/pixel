@@ -1,13 +1,17 @@
 import requests
 
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0',
-    'Authorization': '563492ad6f91700001000001786b9e4bb4bb4b74900164d6c9818e47'
-}
+def search_info():
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0',
+        'Authorization': '563492ad6f91700001000001786b9e4bb4bb4b74900164d6c9818e47'
+    }
+    search = input('Введіть що саме ви шукаету:-') # наприклад opossum or other animals or fish
+    page = int(input('Введіть сторінку по якій вести пошук:-'))  # коректно не працюе
+    web_url = f"https://api.pexels.com/v1/search?query={search}&per_page={page}"
+    responce = requests.get(web_url, headers=headers)
+    if responce.status_code == 200:
+        print(responce.json())
 
-def serch_info():
-    serch = input('Введіть що саме ви шукаету')
-    web_url = f"https://api.pexels.com/v1/search?query={serch}&per_page=1"
-    responce = get.web_url
 
+search_info()

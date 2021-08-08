@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 
@@ -11,7 +13,10 @@ def search_info():
     web_url = f"https://api.pexels.com/v1/search?query={search}&per_page={page}"
     responce = requests.get(web_url, headers=headers)
     if responce.status_code == 200:
-        print(responce.json())
+        #print(responce.json)
+        with open('animals.json', 'w', encoding='utf-8') as file_json:
+            json.dump(responce.json(), file_json, indent=4, ensure_ascii=False)
+
 
 
 search_info()

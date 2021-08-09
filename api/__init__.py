@@ -9,7 +9,6 @@ headers = {
 
 
 def search_info():
-
     search = input('Введіть що саме ви шукаету:-')  # наприклад opossum or other animals or fish
     page = int(input('Введіть сторінку по якій вести пошук:-'))  # коректно не працюе
     web_url = f"https://api.pexels.com/v1/search?query={search}&per_page={page}"
@@ -23,10 +22,12 @@ def search_info():
         text = json.load(file_json)
 
         for txt in text['photos']:
-            print(txt['url'])
+            all_url = []
+            all_url.append(txt['url'])
+            print(all_url)
 
-
-
+            with open('all_animals_url.json', 'w', encoding='utf-8') as file_json_2:
+                json.dump(all_url, file_json_2, ensure_ascii=False, indent=4)
 
 
 search_info()
